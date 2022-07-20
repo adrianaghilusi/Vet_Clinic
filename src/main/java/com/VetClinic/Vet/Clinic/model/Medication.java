@@ -1,5 +1,6 @@
 package com.VetClinic.Vet.Clinic.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,7 +15,8 @@ public class Medication {
     private Long id;
     private String use;
     private String name;
-//    @ManyToOne
-//    @JoinColumn(name = "Medication_id")
-//    private HealthIssue healthIssue;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private HealthIssue healthIssue;
 }

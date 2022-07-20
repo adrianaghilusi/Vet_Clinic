@@ -24,8 +24,8 @@ public class HealthIssue {
     private String name;
     private String recommendations;
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "doctor_id",referencedColumnName = "id")
     Doctor doctor;
-//    @OneToMany(cascade = CascadeType.ALL)
-//    List<Medication> medicationList;
+    @OneToMany(cascade = CascadeType.ALL)
+    List<Medication> medicationList;
 }

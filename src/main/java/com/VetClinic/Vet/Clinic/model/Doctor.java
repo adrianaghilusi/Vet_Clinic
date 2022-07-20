@@ -1,11 +1,15 @@
 package com.VetClinic.Vet.Clinic.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "doctor")
 public class Doctor {
     @Id
