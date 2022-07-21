@@ -3,6 +3,8 @@ package com.VetClinic.Vet.Clinic.controller;
 import com.VetClinic.Vet.Clinic.model.Doctor;
 import com.VetClinic.Vet.Clinic.service.DoctorService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,5 +19,9 @@ public class DoctorController {
     @GetMapping("/doctors")
     List<Doctor> getAllDoctors(){
         return doctorService.getAllDoctors();
+    }
+    @PostMapping("/addDoctor")
+    Doctor addDoctor(@RequestBody Doctor doctor){
+        return doctorService.addDoctor(doctor);
     }
 }
