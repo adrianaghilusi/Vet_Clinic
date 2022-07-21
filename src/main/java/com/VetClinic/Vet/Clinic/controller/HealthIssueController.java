@@ -2,10 +2,9 @@ package com.VetClinic.Vet.Clinic.controller;
 
 import com.VetClinic.Vet.Clinic.model.HealthIssue;
 import com.VetClinic.Vet.Clinic.service.HealthIssueService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.node.TextNode;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,11 @@ public class HealthIssueController {
     @PostMapping("/addIssue")
     public HealthIssue addHealthIssue(@RequestBody HealthIssue healthIssue){
         return healthIssueService.addIssue(healthIssue);
+    }
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @GetMapping("/prescribeMedicationForHealthIssue/{id}/{medicationName}")
+    public HealthIssue prescribeMedicationForHealthIssue(@PathVariable String medicationName, @PathVariable Long id){
+        return healthIssueService.prescribeMedicationForHealthIssue(medicationName, id);
+
     }
 }

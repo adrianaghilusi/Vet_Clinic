@@ -28,4 +28,8 @@ public class Medication {
         this.prescription = prescription;
         this.name = name;
     }
+
+    public Medication(String medicationName) {
+        this.name = medicationName;
+    }
 }
