@@ -2,7 +2,9 @@ package com.VetClinic.Vet.Clinic.service;
 
 import com.VetClinic.Vet.Clinic.model.Doctor;
 import com.VetClinic.Vet.Clinic.model.HealthIssue;
+import com.VetClinic.Vet.Clinic.repository.DoctorRepository;
 import com.VetClinic.Vet.Clinic.repository.HealthIssueRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -11,6 +13,8 @@ import java.util.stream.Collectors;
 @Service
 public class HealthIssueService {
     HealthIssueRepository healthIssueRepository;
+    @Autowired
+    DoctorRepository doctorRepository;
     public HealthIssueService(HealthIssueRepository healthIssueRepository){
         this.healthIssueRepository = healthIssueRepository;
     }
@@ -39,6 +43,9 @@ public class HealthIssueService {
             }
             else
                 patientsPerDoctor.putIfAbsent(issue.getDoctor(),1);
+        }
+        for(var doc: doctorRepository.findAll()){
+            patientsPerDoctor.putIfAbsent(doc,0);
         }
         Integer min = Collections.min(patientsPerDoctor.values());
         return patientsPerDoctor.entrySet().stream().filter(e->min.equals(e.getValue())).map(Map.Entry::getKey).collect(Collectors.toList()).get(0);
